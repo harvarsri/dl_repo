@@ -80,10 +80,3 @@ y_pred = np.expand_dims(y_pred,axis = 0)
 y_pred = model.predict(y_pred)
 
 print(y_pred)
-
-#to find the index of the file you trained
-"""
-To find the index of the file you trained
-Code:
-
-"""

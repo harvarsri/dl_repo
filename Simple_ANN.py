@@ -54,5 +54,3 @@ cm = confusion_matrix(Y_test,y_pred)
 accuracy  = (cm[0][0] + cm[1][1]) / 2000
 
 print(accuracy)
-
-check
