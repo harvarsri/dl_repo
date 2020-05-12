@@ -7,7 +7,7 @@ import time
 Name = 'Churn_Modelling_{}'.format(int(time.time()))
 tensorboard = TensorBoard(log_dir = 'logs\\{}'.format(Name))
 
-df = pd.read_csv('dataset/Churn_Modelling.csv')
+df = pd.read_csv('data/Churn_Modelling.csv')
 X = df.iloc[:,3:13].values
 Y = df.iloc[:,13].values
 
