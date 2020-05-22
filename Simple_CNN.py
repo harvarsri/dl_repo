@@ -17,6 +17,7 @@ test_size = 100
 epochs = 50
 batch_size = 20
 
+#Making sure that input shape is consistant
 single_img_dir = 'dataset/cat_dog_dataset/single_prediction/cat_or_dog_2.jpg'
 
 if K.image_data_format() == 'channels_first':
@@ -24,6 +25,7 @@ if K.image_data_format() == 'channels_first':
 else:
     input_shape = (img_width,img_height,3)
 
+#Training Images Generator(Genrates Multiple New Images using the Given Directory)
 train_datagen = ImageDataGenerator(
         rescale=1./255,
         shear_range=0.2,
@@ -44,6 +46,7 @@ test_generator = test_datagen.flow_from_directory(
         batch_size=batch_size,
         class_mode='binary')
 
+#Model Of CNN
 model = Sequential()
 
 model.add(Convolution2D(32,(3,3),input_shape = input_shape))
@@ -67,6 +70,7 @@ model.add(Activation('sigmoid'))
 
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy',metrics = [("accuracy")])
 
+#Running the model
 model.fit_generator(
         train_generator,
         steps_per_epoch= train_size // batch_size,
@@ -74,6 +78,7 @@ model.fit_generator(
         validation_data= test_generator,
         validation_steps= test_size // batch_size)
 
+#Predicting based on single Image
 y_pred = image.load_img(single_img_dir,target_size = (img_width,img_height))
 y_pred = image.img_to_array(y_pred)
 y_pred = np.expand_dims(y_pred,axis = 0)
